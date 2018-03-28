@@ -67469,6 +67469,10 @@ namespace Microsoft.Azure.Management.AppService.Fluent
 
             // Serialize Request
             string _requestContent = null;
+            _requestContent = Rest.Serialization.SafeJsonConvert.SerializeObject(new object(), Client.SerializationSettings);
+            _httpRequest.Content = new StringContent(_requestContent, System.Text.Encoding.UTF8);
+            _httpRequest.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+
             // Set Credentials
             if (Client.Credentials != null)
             {
